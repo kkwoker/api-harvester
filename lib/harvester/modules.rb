@@ -1,6 +1,6 @@
 require 'settingslogic'
 require 'terminal-announce'
-class Settings < Settingslogic
+class Modules < Settingslogic
   config_paths = %w(/etc /usr/local/etc ~/.config . ../)
 
   config_paths.each do |config_path|

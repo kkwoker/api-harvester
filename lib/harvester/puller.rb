@@ -6,7 +6,7 @@ require 'excon'
 require_relative 'settings'
 
 module Puller
-  @broadcaster = EZMQ::Publisher.new :bind, port: 5000
+  @broadcaster = EZMQ::Publisher.new :bind, port: 5050
   def self.fetch_data(endpoint)
     conn = Faraday.new(url: endpoint) do |faraday|
       faraday.adapter :excon

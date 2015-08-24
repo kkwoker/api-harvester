@@ -3,21 +3,21 @@ module Default
 
   def self.puller name, endpoint, timeout
     %Q(#!/bin/env ruby
-require_relative '../lib/harvester/puller'
+require 'harvester/puller'
 Puller.activate("#{name}", "#{endpoint}", #{timeout})
 )
   end
 
   def self.parser name, endpoint
     %Q(#!/bin/env ruby
-require_relative '../lib/harvester/parser'
+require 'harvester/parser'
 Parser.activate("#{name}", "#{endpoint}")
 )
   end
 
   def self.pusher name, endpoint
     %Q(#!/bin/env ruby
-require_relative '../lib/harvester/pusher'
+require 'harvester/pusher'
 Pusher.activate("#{name}", "#{endpoint}")
 )
   end

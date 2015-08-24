@@ -8,7 +8,7 @@ module Pusher
   @connection = InfluxDB::Client.new host: Settings.influx_host, username: Settings.influx_user, password: Settings.influx_pass
 
   def self.activate topic, endpoint
-    listener = EZMQ::Subscriber.new :connect, port: 6000, topic: topic, decode: -> m { Oj.load m }
+    listener = EZMQ::Subscriber.new :connect, port: 6060, topic: topic, decode: -> m { Oj.load m }
     listener.listen do |message, topic|
       puts write message
     end

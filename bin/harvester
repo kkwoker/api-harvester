@@ -11,6 +11,19 @@ Commander.configure do
 
   default_command :harvest
 
+  command :add do |command|
+    command.syntax = 'harvester parsers [options]'
+    command.summary = ''
+    command.description = 'lists all parser files'
+    command.example 'description', 'command example'
+    command.option '--add STRING', String, 'Adds a new parser by opening the editor'
+    command.action do |_args, options|
+      if options.add
+        # TODO: 
+
+      end
+    end
+  end
   command :harvest do |command|
     command.syntax = 'harvester harvest [options]'
     command.summary = ''

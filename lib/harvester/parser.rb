@@ -3,12 +3,11 @@ require 'ezmq'
 require 'msgpack'
 require 'oj'
 require_relative 'settings'
-require_relative '../../key_transactions'
 module Parser
-  @broadcaster = EZMQ::Publisher.new :bind, port: 6000, encode: -> m { Oj.dump m }
+  @broadcaster = EZMQ::Publisher.new :bind, port: 6060, encode: -> m { Oj.dump m }
   def self.activate topic, endpoint
     puts topic, endpoint
-    listener = EZMQ::Subscriber.new :connect, port: 5000, topic: topic, decode: -> m { Oj.load m }
+    listener = EZMQ::Subscriber.new :connect, port: 5050, topic: topic, decode: -> m { Oj.load m }
     listener.listen do |message, topic|
       data = plow message, topic
       data.each do |item|
@@ -18,6 +17,7 @@ module Parser
   end
 
   def self.plow message, parse
+    require_relative "../../parser_functions/#{parse}"
     send(parse, message)
   end
 end
